@@ -111,6 +111,11 @@ module.exports = {
 "test": "jest --verbose --coverage --runInBand"
 ```
 
+## Setup `mongoose` package
+```
+npm install mongoose 
+```
+
 ## Referrences
 - [gitignore](https://github.com/github/gitignore)
 - [Prettier](https://prettier.io/docs/en/options.html)

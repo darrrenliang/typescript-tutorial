@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest --verbose --coverage --runInBand",
+    "test": "jest --verbose --coverage --forceExit --runInBand",
     "build": "tsc",
     "start": "npm run build && node \"./out/index.js\"",
     "fix-prettier": "prettier --write \"./src/**/*.ts\"",
@@ -16,6 +16,7 @@
   "dependencies": {
     "dotenv": "^16.0.1",
     "fastify": "^4.4.0",
+    "mongoose": "^6.5.2",
     "pino-pretty": "^9.0.0"
   },
   "devDependencies": {
