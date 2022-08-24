@@ -32,6 +32,7 @@ const createServer = async (appConfig: AppConfig) => {
         return reply.status(200).send({ msg: "world" })
     });
 
+
     // server.get('/dogs', async (request, reply) => {
     //     const dogRepo = dogRepoImpt.of();
     //     try {
@@ -41,7 +42,7 @@ const createServer = async (appConfig: AppConfig) => {
     //         return reply.status(500).send({ msg: `Internal Server Error: ${err}` })
     //     }s
     // });
-    server.register(dogRouter, {});
+    server.register(dogRouter, { prefix: '/api' });
 
     const fastifyConfig = {
         port: appConfig.FASTIFY_PORT,

@@ -30,7 +30,7 @@ describe('Server test', () => {
         } catch (err) {
             console.log(`Failed to close the fastify server, the reason: ${err}`);
         }
-    })
+    });
 
     // create an unit test for testing GET /ping and it would be returned 'pong'
     it('Should be returned status code 200 and html body {msg:world}, when visit the endpoint GET /hello', async () => {
