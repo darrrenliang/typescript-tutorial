@@ -13,7 +13,6 @@ describe('Server test', () => {
     const fastifyPort = 8888;
     const connectStr = 'mongodb://localhost:27017/myMERN';
 
-
     // pre-work
     beforeAll(async () => {
 
@@ -54,46 +53,22 @@ describe('Server test', () => {
         });
 
         // assert
+        console.log(response.body)
         expect(response.statusCode).toBe(200);
         expect(response.body).toStrictEqual(JSON.stringify({ dogs: [] }));
-    });
-
-    it('Given a dog item, it should be returned dog items, when GET /dogs', async () => {
-        // arrange
-        const dogBody: myDog = {
-            name: "George",
-            yell: "Bark"
-        }
-
-        await dogRepoImpt.of().addDog(dogBody);
-
-        // act
-        const response = await server.inject({
-            method: 'GET',
-            url: '/api/dogs'
-        });
-
-        // assert
-        expect(response.statusCode).toBe(200);
-        const output: { dogs: Array<myDog> } = JSON.parse(response.body);
-        expect(output.dogs.length).toBe(1)
-        expect(output.dogs[0].name).toBe('George');
-        expect(output.dogs[0].yell).toBe('Bark');
     });
 
     it('should successfully create a Dog to mongodb and the Dog can be found', async () => {
         // arrange
 
         // act
-        const dogBody: myDog = {
-            name: "Mei",
-            yell: "He He He"
-        };
-
         const response1 = await server.inject({
             method: 'POST',
             url: '/api/dogs',
-            payload: dogBody
+            payload: {
+                name: "Mei",
+                yell: "He He He"
+            }
         });
 
         // assert-1: send a POST method request to check the result of creating a dog.
@@ -110,8 +85,69 @@ describe('Server test', () => {
 
         expect(response2.statusCode).toBe(200);
         const res2: { dogs: Array<myDog> } = JSON.parse(response2.body);
+        console.log(res2)
         expect(res2.dogs.length).toBe(1);
         expect(res2.dogs[0].name).toBe('Mei');
         expect(res2.dogs[0].yell).toBe('He He He');
+    });
+
+    it("should successfully create a Dog to mongodb and then update it by Id", async () => {
+        // arrange
+        const response1 = await server.inject({
+            method: 'POST',
+            url: '/api/dogs',
+            payload: {
+                name: 'Terry',
+                yell: 'QQQQ'
+            }
+        });
+
+        expect(response1.statusCode).toBe(201);
+        const res1: { dog: myDog } = JSON.parse(response1.body);
+        expect(res1.dog.name).toBe('Terry');
+        expect(res1.dog.yell).toBe('QQQQ');
+
+        // act
+        const dogId = res1.dog.id;
+        const response2 = await server.inject({
+            method: 'PUT',
+            url: `/api/dogs/${dogId}`,
+            payload: {
+                yell: 'AAAA'
+            }
+        });
+
+        // assert
+        expect(response2.statusCode).toBe(200);
+        const res2: { dog: myDog } = JSON.parse(response2.body);
+        expect(res2.dog.name).toBe('Terry');
+        expect(res2.dog.yell).toBe('AAAA')
+    });
+
+    it("should successfully create a Dog and then delete it by id", async () => {
+        // arrange
+        const response1 = await server.inject({
+            method: 'POST',
+            url: '/api/dogs',
+            payload: {
+                name: 'Stephen',
+                yell: 'Bei Ba Man'
+            }
+        });
+
+        expect(response1.statusCode).toBe(201);
+        const res1: { dog: myDog } = JSON.parse(response1.body);
+        expect(res1.dog.name).toBe('Stephen');
+        expect(res1.dog.yell).toBe('Bei Ba Man');
+
+        // act
+        const dogId = res1.dog.id;
+        const response2 = await server.inject({
+            method: 'DELETE',
+            url: `/api/dogs/${dogId}`
+        })
+
+        // assert
+        expect(response2.statusCode).toBe(204);
     });
 });

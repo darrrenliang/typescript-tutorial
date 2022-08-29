@@ -3,6 +3,7 @@ import { Type } from '@sinclair/typebox';
 const dogsResponseSchema = Type.Object({
     dogs: Type.Array(
         Type.Object({
+            id: Type.String(),
             name: Type.String(),
             yell: Type.String()
         })
@@ -11,15 +12,16 @@ const dogsResponseSchema = Type.Object({
 
 const dogResponseSchema = Type.Object({
     dog: Type.Object({
+        id: Type.String(),
         name: Type.String(),
         yell: Type.String()
     })
 });
 
-const postResponseSchema = Type.Object({
+const postDogBodySchema = Type.Object({
     name: Type.String(),
     yell: Type.Optional(Type.String())
 });
 
 
-export { dogsResponseSchema, dogResponseSchema, postResponseSchema };
+export { dogsResponseSchema, dogResponseSchema, postDogBodySchema };

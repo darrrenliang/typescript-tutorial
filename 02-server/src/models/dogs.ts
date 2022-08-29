@@ -16,4 +16,10 @@ const dogSchema: Schema = new Schema(
 }
 );
 
+// Automatelly to generate id with string data type
+dogSchema.set('toJSON', {
+    virtuals: true,
+    versionKey: false
+});
+
 export default model<myDog>('Dog', dogSchema);
