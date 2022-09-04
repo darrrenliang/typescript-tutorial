@@ -7,7 +7,7 @@
 ## Dependencies
 ```
   npm i -D miragejs
-  npm i react-router-dom @types/react-dom primereact primeflex primeicons react-transition-group prettier
+  npm i react-router-dom @types/react-dom prettier
 ```
 
 ## Folder Structure
@@ -30,9 +30,18 @@ src
 Find the `./public/index.html` file and modify the content of the `title` tag.
 
 
-## Components
-### [Primefaces.org](https://www.primefaces.org/primereact/)
-
+## Components - [Primereact](https://www.primefaces.org/primereact/)
+#### Dependencies
+```
+  npm i primereact primeflex primeicons react-transition-group 
+```
+#### Import `primereact` css into the `index.css`
+```
+@import "primereact/resources/themes/lara-light-indigo/theme.css";
+@import "primereact/resources/primereact.min.css";
+@import "primeicons/primeicons.css";
+```
 
 ## Referrences
-- [Primefaces.org](https://www.primefaces.org/primereact/)
+- [Primereact](https://www.primefaces.org/primereact/)
+- [PrimeIcona](https://www.primefaces.org/diamond/icons.xhtml)
