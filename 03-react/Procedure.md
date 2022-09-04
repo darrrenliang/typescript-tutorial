@@ -44,4 +44,4 @@ Find the `./public/index.html` file and modify the content of the `title` tag.
 
 ## Referrences
 - [Primereact](https://www.primefaces.org/primereact/)
-- [PrimeIcona](https://www.primefaces.org/diamond/icons.xhtml)
+- [PrimeIcons](https://www.primefaces.org/diamond/icons.xhtml)
