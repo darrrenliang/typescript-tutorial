@@ -1,0 +1,4 @@
+docker run -p 9000:9000 -d -p 9001:9001 -e "MINIO_ROOT_USER=minioadmin" -e "MINIO_ROOT_PASSWORD=adminminio" quay.io/minio/minio server /data --console-address ":9001"
+
+
+docker run -d -p 27017:27017 --name my-mongo -v mongo-data:/data/db -e MONGODB_INITDB_ROOT_USERNAME=mongoadmin -e MONGODB_INITDB_ROOT_PASSWORD=adminmongo mongo:latest

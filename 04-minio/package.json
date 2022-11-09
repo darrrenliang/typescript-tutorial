@@ -1,0 +1,34 @@
+{
+  "name": "02-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --verbose --coverage --forceExit --runInBand",
+    "build": "tsc",
+    "start": "npm run build && node \"./out/index.js\"",
+    "fix-prettier": "prettier --write \"./src/**/*.ts\"",
+    "dev": "concurrently \"tsc -w \" \"nodemon ./out/index.js\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.1",
+    "fastify": "^4.4.0",
+    "fp-ts": "^2.12.3",
+    "mongoose": "^6.5.2",
+    "pino-pretty": "^9.0.0",
+    "ts-pattern": "^4.0.5"
+  },
+  "devDependencies": {
+    "@types/jest": "^28.1.7",
+    "@types/node": "^18.7.5",
+    "concurrently": "^7.3.0",
+    "jest": "^28.1.3",
+    "nodemon": "^2.0.19",
+    "prettier": "^2.7.1",
+    "ts-jest": "^28.0.8",
+    "typescript": "^4.7.4"
+  }
+}
