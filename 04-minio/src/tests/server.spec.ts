@@ -2,6 +2,8 @@ import { FastifyInstance } from "fastify";
 import { createServer } from "../server";
 import { AppConfig } from '../types/appConfig'
 
+import * as minio from 'minio';
+
 // create a function to do server testing
 describe('Server test', () => {
 
